@@ -44,3 +44,36 @@ export const getDetailsTodo = async (req: Request, res: Response) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+export const updateTodo = async (req: Request, res: Response) => {
+  const { title, content, status } = req.body;
+
+  const { todoId } = req.params;
+  if (!todoId || isNaN(Number(todoId))) {
+    return res.status(400).json({ error: "Invalid todo ID" });
+  }
+  try {
+    const result = await pool.query(
+      "UPDATE todo SET title= $1, content=$2, status=$3  WHERE id = $4",
+      [title, content, status, todoId]
+    );
+    res.status(200).json(result.rows[0]);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+};
+export const deleteTodo = async (req: Request, res: Response) => {
+  const { todoId } = req.params;
+  if (!todoId || isNaN(Number(todoId))) {
+    return res.status(400).json({ error: "Invalid todo ID" });
+  }
+  try {
+    const result = await pool.query("DELETE FROM todo WHERE id = $1", [todoId]);
+    res.status(200).json({
+      message: "Task deleted successfully",
+      deletedPost: result.rows[0],
+    });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+};
