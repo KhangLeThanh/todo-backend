@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-const pool = require("../db");
+import pool from "../db";
 
 export const createTodo = async (req: Request, res: Response) => {
   const { title, content, status } = req.body;
