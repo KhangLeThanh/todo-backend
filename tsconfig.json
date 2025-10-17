@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    /* === File Layout === */
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    /* === Environment Settings === */
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": ["es2020"],
+    "types": ["node"],
+
+    /* === Output === */
+    "sourceMap": true,
+    "declaration": false,
+
+    /* === Type Checking === */
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+
+    /* === Optional, good defaults === */
+    "forceConsistentCasingInFileNames": true
+  },
+  "incremental": true,
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}
